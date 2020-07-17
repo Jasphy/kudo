@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Post comment</title>
+</head>
+<style>
+ul {
+  list-style-type: none;
+  margin: 2px;
+  padding: 0;
+ 
+  
+}
+
+
+li {
+  float: right;
+  color:grey;
+}
+
+</style>
+<body>
+
+<div>
+<ul>
+<li>
+<p th:text="${user.getName()}"></p></li>
+<li><img class="picture" th:src="@{/image/{name} (name=${user.getName()})}" style="border-radius:50% 50% 50% 50%;width:50px;height:50px;" /></li>
+<li style="float: left;color:#7D33FF;font-weight:bold;font-family:Arial;"><p th:id="ku">Kudos</p></li>
+</ul>
+
+</div>
+<br><br>
+<form action="#" th:action="@{/postcomment}" method="post" >
+<div>
+
+ <div>
+          <label for="postkudo">Post kudos</label>
+          <br>
+         <input type="text" name="postkudo" th:value="${postkudo}" required/><br>
+                  </div>
+                  
+
+                    <div>
+    <!--   <label for="username">Username</label>: -->
+      <input type="hidden" name="username" th:value="${user.getName()}"/> <br/>
+      </div>
+     
+      <div>
+      <input type="submit" value="Submit" style="float:left;"/>
+      <input type="submit" value="Cancel" style="float:left;" />
+      
+      </div>
+        
+      
+      </div>
+    
+        </form>
+        
+        <table style="border-collapse: separate; border-spacing: 10px;">
+	
+			<tr th:each="comment:${list}">
+			<td><img class="picture" th:src="@{/image/{name} (name=${comment.getUser().getName()})}" style="border-radius:50% 50% 50% 50%;width:50px;height:50px;" /></td>
+				<td th:text="${comment.getInsert_ts()}"></td>
+			<td th:text="${comment.getText_message()}"></td>
+	        <td><a th:href="@{/like/{id}(id=${comment.getComment_id()})}">Like</a></td>
+	         <td><a th:href="@{/delete/{id}(name=${comment.getComment_id()})}">Delete</a></td>
+	      
+	        
+	    
+		</tr>
+	</table>
+         
+</body>
+</html>
