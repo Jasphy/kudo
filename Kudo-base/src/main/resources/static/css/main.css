@@ -3,24 +3,61 @@ h1{
 	color:#0000FF;
 }
 p{
-	color:white;
+	color:blue;
+	float:left;
+}
+.s{
+	
+	color:black;
+	font-style:bold;
+	font-size:25px;
+	font-family: sans-serif;
+}
+
+.submit{
+	height: 20px;
+ width: 308px;
+ border: 1px;
+ background-color:#7a8fe9;
+color:white;
+ margin-top: 10px;
+ float: left;
 	
 }
  
- input[type=text], input[type=password] {
-    width: 25%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    box-sizing: border-box;
+ input {
+  
+ height: 20px;
+ width: 300px;
+ border: 1px;
+ border-style:inset;
+ border-radius:5px;
+ border-color:grey;
+ margin-top: 10px;
+ float: left;
+
+}
+ body {
+    text-align: center;
+} 
+form {
+ background-color: #FFF;
+ height: 300px;
+ width: 300px;
+ margin-right: auto;
+ margin-left: auto;
+ margin-top: 0px;
+ border-top-left-radius: 10px;
+ border-top-right-radius: 10px;
+ padding: 0px;
 }
 
 
 a:link, a:visited {
-    background-color: grey;
+    background-color: cornflowerblue;
     color: white;
-    padding: 14px 25px;
+    padding: 1px 20px;
+    border-radius:3px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
@@ -33,11 +70,47 @@ a:hover, a:active {
 
 label
 {
- color:white;
- font-weight: bold;
- display: block;
- width: 150px;
+  font-family: sans-serif;
+ font-size: 15px;
+ color:grey;
+ float:left;
+ clear: both;
+}
+fieldset {
+    display: block;
+    margin-inline-start: 2px;
+    margin-inline-end: 2px;
+    padding-block-start: 0.35em;
+    padding-inline-start: 0.75em;
+    padding-inline-end: 0.75em;
+    padding-block-end: 0.625em;
+    min-inline-size: min-content;
+    border-width: 0.2px;
+    border-style: none;
+    border-color: lightblue;
+    border-image: initial;
 }
 
+
+.header{
+	color:#63059e;
+	 overflow: hidden;
+  
+	
+	
+	
+	
+}
+
+.header p {
+  float: left;
+  color: #6910ade0;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+  font-family:sans-serif;
+ 
+}
  
  

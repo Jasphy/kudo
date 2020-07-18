@@ -7,34 +7,34 @@
 <title>Login page</title>
 </head>
 <body>
-<p th:align="center" th:color="white">Welcome !! Please Login. </p>
+<div class="header">
+  <p >Kudos<p></div>
 <br /><br /><br /><br /><br /><br /><br /><br /><br />
-
-      <!-- <img src="../../static/images/images.jpg" class="pitch" style="width:200px;height:100px; top: 25px;
-      left: 25px;
-      z-index: 2;"/> -->
       
 
 <!-- @{/homepage}-->
+<div class="loginform">
+
    <form th:with="authUrl=${'/commentpage'}" action="#" th:action="${authUrl}" method="post">
-   
+    <fieldset>
+  
       <div>
+      <p class ="s">Sign in</p>
       <label for="username">User name</label>
-      <input type="text" placeholder="username" name="username" th:value="${username}"/> 
+      <input type="text"  name="username" th:value="${username}"/> 
       <br />
       <label for="password">Password</label>
-      <input type="password" placeholder="password" name="password" th:value="${password}"/> 
+      <input type="password"  name="password" th:value="${password}"/> 
       <br />
       <br />
-      </div>
-     
-      <div>
-      <input th:align="left" type="submit" value="Sign in" />
-      <a th:align="right" th:href="@{/register}">New User</a>
-      </div>
+      <input class="submit" type="submit" value="Sign in" />
       
+      </div>
+      <p>New User ?<a th:href="@{/register}">Sign up</a></p>
+      
+      </fieldset>
     </form>
-    
+    </div>
     
 </body>
 </html>

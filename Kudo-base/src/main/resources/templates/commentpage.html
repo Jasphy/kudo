@@ -2,6 +2,11 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="ISO-8859-1">
+<link rel="stylesheet" th:href="@{/css/comment.css}"
+	href="../../css/comment.css" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
 <title>Post comment</title>
 </head>
 <style>
@@ -22,12 +27,11 @@ li {
 </style>
 <body>
 
-<div>
+<div class="header">
 <ul>
-<li>
-<p th:text="${user.getName()}"></p></li>
-<li><img class="picture" th:src="@{/image/{name} (name=${user.getName()})}" style="border-radius:50% 50% 50% 50%;width:50px;height:50px;" /></li>
-<li style="float: left;color:#7D33FF;font-weight:bold;font-family:Arial;"><p th:id="ku">Kudos</p></li>
+<li class="name" th:text="${user.getName()}"></li>
+<li class="image"><img class="picture" th:src="@{/image/{name} (name=${user.getName()})}" style="border-radius:50% 50% 50% 50%;width:30px;height:30px;" /></li>
+<li style="float: left;color:#7D33FF;font-weight:bold;font-family:Arial;">Kudos</li>
 </ul>
 
 </div>
@@ -35,42 +39,58 @@ li {
 <form action="#" th:action="@{/postcomment}" method="post" >
 <div>
 
- <div>
-          <label for="postkudo">Post kudos</label>
-          <br>
-         <input type="text" name="postkudo" th:value="${postkudo}" required/><br>
-                  </div>
-                  
-
-                    <div>
-    <!--   <label for="username">Username</label>: -->
-      <input type="hidden" name="username" th:value="${user.getName()}"/> <br/>
-      </div>
+ <div class="commentdiv">
+ 
+          <label class="lab" for="postkudo">Post kudos</label>
+          <br/>
+          <br/>
+         <textarea class="commentbox"  name="postkudo" maxlength="200" th:value="${postkudo}" required></textarea><br>
+              
      
-      <div>
-      <input type="submit" value="Submit" style="float:left;"/>
-      <input type="submit" value="Cancel" style="float:left;" />
+      <input class="button1"  type="submit" value="Cancel" style="float:right;" />
+      <input class="button" type="submit" value="Post" style="float:right;"/><br />
+      <input type="hidden" name="username" th:value="${user.getName()}"/>
       
-      </div>
-        
+     </div>   
       
       </div>
     
-        </form>
         
-        <table style="border-collapse: separate; border-spacing: 10px;">
+  <!--       <table style="border-collapse: separate; border-spacing: 10px;">
+	
 	
 			<tr th:each="comment:${list}">
+			
 			<td><img class="picture" th:src="@{/image/{name} (name=${comment.getUser().getName()})}" style="border-radius:50% 50% 50% 50%;width:50px;height:50px;" /></td>
 				<td th:text="${comment.getInsert_ts()}"></td>
+				
 			<td th:text="${comment.getText_message()}"></td>
+			
 	        <td><a th:href="@{/like/{id}(id=${comment.getComment_id()})}">Like</a></td>
 	         <td><a th:href="@{/delete/{id}(name=${comment.getComment_id()})}">Delete</a></td>
 	      
 	        
 	    
 		</tr>
-	</table>
+		
+		
+	</table> -->
+	
+	
+        </form>
+        <div class="mainsection">
+        <p class="sectiontitle">Latest kudos</p>
+	<div class="section" th:each="comment:${list}">
+	
+	<img class="picture" th:src="@{/image/{name} (name=${comment.getUser().getName()})}" style="border-radius:50% 50% 50% 50%;width:30px;height:30px;" />
+	<p class="commentname" th:text="${comment.getUser().getName()}"></p>
+	<p class="commentname" th:text="${comment.getInsert_ts()}"></p>
+	<p class="commenttext" th:text="${comment.getText_message()}"></p>
+	<a th:href="@{/like/{id}(id=${comment.getComment_id()})}"><i class="glyphicon glyphicon-thumbs-up"></i></a>
+	<a th:href="@{/delete/{id}(name=${comment.getComment_id()})}"><i class="fa fa-trash"></i></a>
+	<br/><br/>
+	</div>
+	</div>
          
 </body>
 </html>
