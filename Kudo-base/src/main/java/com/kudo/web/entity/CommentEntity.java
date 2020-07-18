@@ -3,6 +3,7 @@ package com.kudo.web.entity;
 import java.sql.Date;
 import java.sql.Timestamp;
 
+import javax.persistence.Cacheable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,15 +13,25 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+
 @Entity
 @Table(name="Comment")
+@Cacheable(false)
 public class CommentEntity {
 	
-	public CommentEntity(String text_message, Timestamp insert_ts, UserEntity user) {
+	
+
+	public CommentEntity(Integer like_count) {
+		super();
+		this.like_count = like_count;
+	}
+
+	public CommentEntity(String text_message, Timestamp insert_ts, UserEntity user,Integer like_count) {
 		super();
 		this.text_message = text_message;
 		this.insert_ts = insert_ts;
 		this.user = user;
+		this.like_count=like_count;
 	}
 	
 	public CommentEntity() {}
@@ -38,6 +49,8 @@ public class CommentEntity {
 	
 	@Column(name="Insert_ts")
 	private Timestamp insert_ts;
+	@Column(name="like_count")
+	private Integer like_count;
 	
 	@ManyToOne
 	private UserEntity user;
@@ -72,6 +85,13 @@ public class CommentEntity {
 
 	public void setUser(UserEntity user) {
 		this.user = user;
+	}
+	public Integer getLike_count() {
+		return like_count;
+	}
+
+	public void setLike_count(Integer like_count) {
+		this.like_count = like_count;
 	}
 	
 	

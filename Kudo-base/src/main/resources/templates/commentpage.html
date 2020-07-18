@@ -86,8 +86,10 @@ li {
 	<p class="commentname" th:text="${comment.getUser().getName()}"></p>
 	<p class="commentname" th:text="${comment.getInsert_ts()}"></p>
 	<p class="commenttext" th:text="${comment.getText_message()}"></p>
-	<a th:href="@{/like/{id}(id=${comment.getComment_id()})}"><i class="glyphicon glyphicon-thumbs-up"></i></a>
-	<a th:href="@{/delete/{id}(name=${comment.getComment_id()})}"><i class="fa fa-trash"></i></a>
+	<a th:href="@{/like/{id}(id=${comment.getComment_id()})}"><i class="glyphicon glyphicon-thumbs-up"><span class="commentcount" th:text="${comment.getLike_count()}"></span></i></a>
+	
+	<a th:href="@{/delete/{id}(id=${comment.getComment_id()})}"><i class="fa fa-trash"></i></a>
+	
 	<br/><br/>
 	</div>
 	</div>

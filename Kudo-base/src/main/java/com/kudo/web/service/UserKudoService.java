@@ -1,5 +1,7 @@
 package com.kudo.web.service;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,6 +49,39 @@ public class UserKudoService {
 		List<CommentEntity> ls=kr.findAll();
 		return ls;
 		
+	}
+
+	public void sort(List<CommentEntity> list) {
+		// TODO Auto-generated method stub
+		
+Comparator<CommentEntity> co=(e1, e2) -> e1.getInsert_ts().compareTo(e2.getInsert_ts());
+	
+		
+		Collections.reverseOrder(co);
+		
+		Collections.sort(list,co);	
+		Collections.reverse(list);
+		
+	}
+
+	public CommentEntity findcommentbyid(Integer id) {
+		// TODO Auto-generated method stub
+		
+		return kr.findById(id).get();
+		
+	}
+
+	public void updatelikecount(int count, Integer id) {
+		// TODO Auto-generated method stub
+		
+		kr.updatelikecount(new Integer(count),id);
+		
+	}
+
+	public void deletecomment(Integer id) {
+		// TODO Auto-generated method stub
+		
+		kr.deleteById(id);
 	}
 
 }

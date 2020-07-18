@@ -110,8 +110,12 @@ background-color: #FFF;
 
 .commenttext{
 	font-family: sans-serif;
-    font-size: large;
+    font-size: medium;
     font-stretch: ultra-expanded;
 	
 	
+}
+.commentcount{
+	
+	color:grey;
 }

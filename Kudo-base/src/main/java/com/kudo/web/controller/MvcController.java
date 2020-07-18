@@ -76,8 +76,15 @@ public class MvcController {
 
 			if (password.equals(ue.getPassword())) {
 
+				session.setAttribute("name", ue);
+				List<CommentEntity> list=uks.findallcomments();
+				
+				uks.sort(list);
+				
 				
 				model.addAttribute("user", ue);
+				model.addAttribute("list",list);
+				
 				return "commentpage";
 			}
 		}
@@ -162,24 +169,64 @@ public class MvcController {
 		ue = uks.findUserEntityByName(name);
 		 Timestamp timestamp = new Timestamp(System.currentTimeMillis());
 		
-		CommentEntity ce=new CommentEntity(text,timestamp,ue);
+		CommentEntity ce=new CommentEntity(text,timestamp,ue,0);
 		
 		uks.savecomment(ce);
 		
+		
 		List<CommentEntity> list=uks.findallcomments();
-		Comparator<CommentEntity> co=(e1, e2) -> e1.getInsert_ts().compareTo(e2.getInsert_ts());
-	
 		
-		Collections.reverseOrder(co);
+		uks.sort(list);
 		
-		Collections.sort(list,co);	
-		Collections.reverse(list);
 		
-		System.out.println(list.get(0).getInsert_ts());
 		model.addAttribute("user", ue);
 		model.addAttribute("list",list);
 
 		return "commentpage";
+	}
+	
+	@GetMapping("/like/{id}") // likekudo
+	public String postcomment(@PathVariable("id") Integer id,
+			
+			Model model) {
+	
+	CommentEntity ce=uks.findcommentbyid(id);
+	int count=0;
+	if(ce.getLike_count()==null) {
+	count=1;
+	}
+	else {
+	
+	 count=ce.getLike_count().intValue()+1;
+	}
+	
+	uks.updatelikecount(count,id);
+List<CommentEntity> list=uks.findallcomments();
+	uks.sort(list);
+	model.addAttribute("user", ce.getUser());
+	model.addAttribute("list",list);
+
+		return "commentpage";
+	}
+	
+	@GetMapping("/delete/{id}") // delete player
+	public String delete(@PathVariable("id") Integer id,HttpSession session,
+			
+			Model model) {
+
+		CommentEntity ce=uks.findcommentbyid(id);
+		
+		if(((UserEntity)session.getAttribute("name")).getId()==ce.getUser().getId()) {
+		
+		uks.deletecomment(id);
+		}
+		
+		List<CommentEntity> list=uks.findallcomments();
+		uks.sort(list);
+		model.addAttribute("user", (UserEntity)session.getAttribute("name"));
+		model.addAttribute("list",list);
+		return "commentpage";
+
 	}
 	
 	
