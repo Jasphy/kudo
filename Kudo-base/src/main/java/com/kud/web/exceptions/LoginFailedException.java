@@ -1,5 +1,7 @@
 package com.kud.web.exceptions;
 
-public class LoginFailedException {
+public class LoginFailedException extends Exception{
+	
+	
 
 }

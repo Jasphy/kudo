@@ -29,8 +29,9 @@ li {
 
 <div class="header">
 <ul>
-<li class="name" th:text="${user.getName()}"></li>
-<li class="image"><img class="picture" th:src="@{/image/{name} (name=${user.getName()})}" style="border-radius:50% 50% 50% 50%;width:30px;height:30px;" /></li>
+<!-- <li ><a th:href="@{/logout}"><i class="glyphicon glyphicon-log-out"><span>Logout</span></i></a></li> -->
+<!-- <li class="name" th:text="${user.getName()}"></li> -->
+<li class="image"><img class="picture" th:src="@{/image/{name} (name=${user.getName()})}" style="border-radius:50% 50% 50% 50%;width:30px;height:30px;" /><span th:text="${user.getName()}"></span><i>&nbsp;&nbsp;</i><a th:href="@{/logout}"><i class="glyphicon glyphicon-log-out"><span>Logout</span></i></a></li>
 <li style="float: left;color:#7D33FF;font-weight:bold;font-family:Arial;">Kudos</li>
 </ul>
 
@@ -82,9 +83,9 @@ li {
         <p class="sectiontitle">Latest kudos</p>
 	<div class="section" th:each="comment:${list}">
 	
-	<img class="picture" th:src="@{/image/{name} (name=${comment.getUser().getName()})}" style="border-radius:50% 50% 50% 50%;width:30px;height:30px;" />
-	<p class="commentname" th:text="${comment.getUser().getName()}"></p>
-	<p class="commentname" th:text="${comment.getInsert_ts()}"></p>
+	<img class="picture" th:src="@{/image/{name} (name=${comment.getUser().getName()})}" style="border-radius:50% 50% 50% 50%;width:30px;height:30px;"/><span th:text="${comment.getUser().getName()}"></span><i>&nbsp;&nbsp;</i><span th:text="${comment.getInsert_ts()}"></span>
+	<!-- <p class="commentname" th:text="${comment.getUser().getName()}"></p> -->
+	<!-- <p class="commentname" th:text="${comment.getInsert_ts()}"></p> -->
 	<p class="commenttext" th:text="${comment.getText_message()}"></p>
 	<a th:href="@{/like/{id}(id=${comment.getComment_id()})}"><i class="glyphicon glyphicon-thumbs-up"><span class="commentcount" th:text="${comment.getLike_count()}"></span></i></a>
 	

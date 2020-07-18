@@ -5,18 +5,17 @@ import java.io.InputStream;
 import java.sql.Blob;
 import java.sql.SQLException;
 import java.sql.Timestamp;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.Date;
+
+
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
 import javax.sql.rowset.serial.SerialBlob;
 import javax.sql.rowset.serial.SerialException;
 
+import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.InputStreamResource;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -55,7 +54,8 @@ public class MvcController {
 	
 	@PostMapping("/commentpage") // HomePage
 	@SessionScope
-	public String homepage(@RequestParam("username") String username, @RequestParam("password") String password,
+	@Pointcut
+	public String getcommentpage(@RequestParam("username") String username, @RequestParam("password") String password,
 			Model model, HttpSession session) {
 
 		String user = username.toString();
@@ -64,11 +64,13 @@ public class MvcController {
 
 		UserEntity ue;
 
-		if (uks.findUserEntityByName(user) == null) {
-
-			return "redirect:/login";
-
-		}
+		
+		 if (uks.findUserEntityByName(user) == null) {
+		 
+		 return "redirect:/login";
+		 
+		 }
+		 
 
 		ue = uks.findUserEntityByName(user);
 
@@ -86,8 +88,9 @@ public class MvcController {
 				model.addAttribute("list",list);
 				
 				return "commentpage";
-			}
-		}
+		
+		 } }
+		 
 		return "redirect:/login";
 
 	}
@@ -186,7 +189,7 @@ public class MvcController {
 	}
 	
 	@GetMapping("/like/{id}") // likekudo
-	public String postcomment(@PathVariable("id") Integer id,
+	public String postcomment(@PathVariable("id") Integer id,HttpSession session,
 			
 			Model model) {
 	
@@ -203,7 +206,7 @@ public class MvcController {
 	uks.updatelikecount(count,id);
 List<CommentEntity> list=uks.findallcomments();
 	uks.sort(list);
-	model.addAttribute("user", ce.getUser());
+	model.addAttribute("user", (UserEntity)session.getAttribute("name"));
 	model.addAttribute("list",list);
 
 		return "commentpage";
@@ -226,6 +229,14 @@ List<CommentEntity> list=uks.findallcomments();
 		model.addAttribute("user", (UserEntity)session.getAttribute("name"));
 		model.addAttribute("list",list);
 		return "commentpage";
+
+	}
+	
+	@GetMapping("/logout") // delete player
+	public String logout() {
+
+	
+		return "login";
 
 	}
 	
