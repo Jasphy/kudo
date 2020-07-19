@@ -28,11 +28,12 @@ li {
 <body>
 
 <div class="header">
+<p style="float:left;font-size: xx-large;font-family: sans-serif;color: blueviolet;">Kudos</p>
 <ul>
 <!-- <li ><a th:href="@{/logout}"><i class="glyphicon glyphicon-log-out"><span>Logout</span></i></a></li> -->
 <!-- <li class="name" th:text="${user.getName()}"></li> -->
 <li class="image"><img class="picture" th:src="@{/image/{name} (name=${user.getName()})}" style="border-radius:50% 50% 50% 50%;width:30px;height:30px;" /><span th:text="${user.getName()}"></span><i>&nbsp;&nbsp;</i><a th:href="@{/logout}"><i class="glyphicon glyphicon-log-out"><span>Logout</span></i></a></li>
-<li style="float: left;color:#7D33FF;font-weight:bold;font-family:Arial;">Kudos</li>
+<!-- <li style="float: left;color:#7D33FF;font-weight:bold;font-family:Arial;"><span>Kudos</span></li> -->
 </ul>
 
 </div>
@@ -83,13 +84,21 @@ li {
         <p class="sectiontitle">Latest kudos</p>
 	<div class="section" th:each="comment:${list}">
 	
-	<img class="picture" th:src="@{/image/{name} (name=${comment.getUser().getName()})}" style="border-radius:50% 50% 50% 50%;width:30px;height:30px;"/><span th:text="${comment.getUser().getName()}"></span><i>&nbsp;&nbsp;</i><span th:text="${comment.getInsert_ts()}"></span>
+	<img class="picture" th:src="@{/image/{name} (name=${comment.getUser().getName()})}" style="border-radius:50% 50% 50% 50%;width:30px;height:30px;"/><i>&nbsp;&nbsp;</i><span class="namee" th:text="${comment.getUser().getName()}"></span><i>&nbsp;&nbsp;</i>
+	<!-- <span th:text="${#dates.format(comment.getInsert_ts(), 'dd-MM-yyyy HH:mm')}"></span> -->
+	<span class="time" th:text="${#dates.hour(comment.getInsert_ts())}"></span><i>&#58;</i><span class="time" th:text="${#dates.minute(comment.getInsert_ts())}"></span>
+	<span class="time" th:text="${#dates.monthNameShort(comment.getInsert_ts())}"></span>
+	<span class="time" th:text="${#dates.day(comment.getInsert_ts())}"></span>
+	<span class="time" th:text="${#dates.year(comment.getInsert_ts())}"></span>
+
 	<!-- <p class="commentname" th:text="${comment.getUser().getName()}"></p> -->
 	<!-- <p class="commentname" th:text="${comment.getInsert_ts()}"></p> -->
 	<p class="commenttext" th:text="${comment.getText_message()}"></p>
 	<a th:href="@{/like/{id}(id=${comment.getComment_id()})}"><i class="glyphicon glyphicon-thumbs-up"><span class="commentcount" th:text="${comment.getLike_count()}"></span></i></a>
 	
-	<a th:href="@{/delete/{id}(id=${comment.getComment_id()})}"><i class="fa fa-trash"></i></a>
+	<span  th:if="${user.getId() == comment.getUser().getId()}">
+	<a th:href="@{/delete/{id}(id=${comment.getComment_id()})}" onclick="return confirm('Are you sure ?');"><i class="fa fa-trash" style="color:hotpink;"></i></a>
+	</span>
 	
 	<br/><br/>
 	</div>

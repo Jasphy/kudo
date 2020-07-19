@@ -13,6 +13,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 
 @Entity
 @Table(name="Comment")
@@ -26,10 +28,10 @@ public class CommentEntity {
 		this.like_count = like_count;
 	}
 
-	public CommentEntity(String text_message, Timestamp insert_ts, UserEntity user,Integer like_count) {
+	public CommentEntity(String text_message, Timestamp timestamp, UserEntity user,Integer like_count) {
 		super();
 		this.text_message = text_message;
-		this.insert_ts = insert_ts;
+		this.insert_ts = timestamp;
 		this.user = user;
 		this.like_count=like_count;
 	}
@@ -48,6 +50,7 @@ public class CommentEntity {
 	private String text_message;
 	
 	@Column(name="Insert_ts")
+	@DateTimeFormat(pattern = "dd MMMM yyyy zzzz")
 	private Timestamp insert_ts;
 	@Column(name="like_count")
 	private Integer like_count;

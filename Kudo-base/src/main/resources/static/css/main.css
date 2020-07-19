@@ -93,16 +93,14 @@ fieldset {
 
 
 .header{
-	color:#63059e;
-	 overflow: hidden;
-  
-	
-	
-	
-	
+	height: 60px;
+    margin-left: 150px;
+    margin-right: 150px;
+        border-bottom: inset;
+        border-bottom-width: thick;
 }
 
-.header p {
+/* .header p {
   float: left;
   color: #6910ade0;
   text-align: center;
@@ -112,5 +110,5 @@ fieldset {
   font-family:sans-serif;
  
 }
- 
+  */
  

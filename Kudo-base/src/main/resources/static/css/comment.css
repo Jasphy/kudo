@@ -110,12 +110,23 @@ background-color: #FFF;
 
 .commenttext{
 	font-family: sans-serif;
-    font-size: medium;
-    font-stretch: ultra-expanded;
+    font-size: small;
+    font-stretch: semi-expanded;
+    margin-top: 10px;
 	
 	
 }
 .commentcount{
 	
 	color:grey;
+}
+.time{
+	
+	color:grey;
+	font-size:small;
+}
+.namee{
+	font-family: initial;
+    font-size: medium;
+    color: darkslategrey;
 }

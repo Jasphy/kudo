@@ -3,6 +3,7 @@ package com.kudo.web.controller;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Blob;
+import java.sql.Date;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 
@@ -33,6 +34,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.kudo.web.entity.CommentEntity;
 import com.kudo.web.entity.UserEntity;
+import com.kudo.web.entity.User_comment;
 import com.kudo.web.service.UserKudoService;
 
 
@@ -170,7 +172,10 @@ public class MvcController {
 		
 		UserEntity ue;
 		ue = uks.findUserEntityByName(name);
-		 Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+	 Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+		//Date date =new Date(System.currentTimeMillis());
+		 
+	
 		
 		CommentEntity ce=new CommentEntity(text,timestamp,ue,0);
 		
@@ -189,21 +194,41 @@ public class MvcController {
 	}
 	
 	@GetMapping("/like/{id}") // likekudo
-	public String postcomment(@PathVariable("id") Integer id,HttpSession session,
+	public String likecomment(@PathVariable("id") Integer id,HttpSession session,
 			
 			Model model) {
+		CommentEntity ce=uks.findcommentbyid(id);
+		int count=0;
+	User_comment uc=uks.findusercommentmap((UserEntity)session.getAttribute("name"),ce);
 	
-	CommentEntity ce=uks.findcommentbyid(id);
-	int count=0;
-	if(ce.getLike_count()==null) {
-	count=1;
+	if(uc==null) {
+		uks.usercommentmap((UserEntity)session.getAttribute("name"),ce);
+		
 	}
 	else {
-	
-	 count=ce.getLike_count().intValue()+1;
+		int like_yes=uc.getLike().intValue();
+		
+		if(like_yes==1) {
+			List<CommentEntity> list=uks.findallcomments();
+			uks.sort(list);
+			model.addAttribute("user", (UserEntity)session.getAttribute("name"));
+			model.addAttribute("list",list);
+
+				return "commentpage";
+		}
+		else {
+			if(ce.getLike_count()==null) {
+				count=1;
+				}
+				else {
+				
+				 count=ce.getLike_count().intValue()+1;
+				}
+			uks.updatelikecount(count,id);
+		}
+		
 	}
 	
-	uks.updatelikecount(count,id);
 List<CommentEntity> list=uks.findallcomments();
 	uks.sort(list);
 	model.addAttribute("user", (UserEntity)session.getAttribute("name"));
