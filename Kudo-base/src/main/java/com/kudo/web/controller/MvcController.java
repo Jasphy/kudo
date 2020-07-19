@@ -203,7 +203,14 @@ public class MvcController {
 	
 	if(uc==null) {
 		uks.usercommentmap((UserEntity)session.getAttribute("name"),ce);
-		
+		if(ce.getLike_count()==null) {
+			count=1;
+			}
+			else {
+			
+			 count=ce.getLike_count().intValue()+1;
+			}
+		uks.updatelikecount(count,id);
 	}
 	else {
 		int like_yes=uc.getLike().intValue();

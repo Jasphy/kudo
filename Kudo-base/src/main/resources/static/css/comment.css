@@ -130,3 +130,12 @@ background-color: #FFF;
     font-size: medium;
     color: darkslategrey;
 }
+
+.catagory {
+    color: blue;
+    width: 120px;
+    margin-right: 0;
+    float: left;
+    margin-left: 20px;
+    margin-top: 18px;
+}

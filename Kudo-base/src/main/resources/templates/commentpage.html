@@ -80,8 +80,22 @@ li {
 	
 	
         </form>
+        <!--     <div class="catagory">
+        <button>International News</button><br/>
+        <button>Entertainment</button><br/>
+        <button>Sports</button><br/>
+        <button>National News</button><br/>
+        <button>Food</button><br/>
+        <button>Education</button><br/>
+        <button>Agriculture</button><br/>
+        <button>Help</button><br/>
+        
+        
+        </div> -->
         <div class="mainsection">
         <p class="sectiontitle">Latest kudos</p>
+        
+    
 	<div class="section" th:each="comment:${list}">
 	
 	<img class="picture" th:src="@{/image/{name} (name=${comment.getUser().getName()})}" style="border-radius:50% 50% 50% 50%;width:30px;height:30px;"/><i>&nbsp;&nbsp;</i><span class="namee" th:text="${comment.getUser().getName()}"></span><i>&nbsp;&nbsp;</i>
