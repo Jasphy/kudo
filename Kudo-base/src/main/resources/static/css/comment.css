@@ -132,10 +132,97 @@ background-color: #FFF;
 }
 
 .catagory {
-    color: blue;
-    width: 120px;
+   
     margin-right: 0;
     float: left;
     margin-left: 20px;
     margin-top: 18px;
 }
+.catabtn{
+	
+	background-color:#2196F3;
+    border: none;
+        border-radius: 5px;
+    padding: 5px;
+    font-size: medium;
+    color: antiquewhite;
+    margin-bottom: 5px;
+    width: 150px;
+}
+
+.form-popup {
+ 
+  display: none;
+    background-color: white;
+    color: #607d8b;
+    margin-top: -20px;
+    /* margin-right: 50px; */
+    height: 85px;
+    width: 200px;
+    margin-left: 45px;
+    position:absolute;
+    /* margin-right: 0px; */
+    /* border: 3px solid; */
+    /* border-radius: 20px; */
+    /* border-color: #9E9E9E; */
+    /* border-width: thin;
+   
+ /*  width: 160px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 8px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -80px; */
+}
+ .form-container{
+	
+ 
+}
+	
+/* .form-popup {
+  visibility: hidden;
+  width: 160px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 8px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -80px;
+}
+
+
+.form-popup::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+}
+
+ .show {
+  visibility: visible;
+  -webkit-animation: fadeIn 1s;
+  animation: fadeIn 1s;
+}
+
+@-webkit-keyframes fadeIn {
+  from {opacity: 0;} 
+  to {opacity: 1;}
+}
+
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity:1 ;}
+} */ 

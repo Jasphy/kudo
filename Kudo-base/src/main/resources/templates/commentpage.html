@@ -9,6 +9,49 @@
 
 <title>Post comment</title>
 </head>
+<script>
+function openbox(id) {
+	
+	console.log("myform"+id);
+  document.getElementById("myForm" + id).style.display = "block"; 
+  /* var popup = document.getElementById("myForm"");
+  popup.classList.toggle("show"); */
+  
+  document.getElementById("mytext"+id).value =id;
+  
+}
+
+function closeForm(id) {
+  document.getElementById("myForm" + id).style.display = "none";
+}
+
+function countupdate(){
+	
+	var text=document.getElementById("postkudo").value ;
+	console.log(text);
+	var textsize=text.length;
+	console.log("textsize"+textsize);
+	
+	var count=document.getElementById("count").innerHTML ;
+	a=Number(count);
+	console.log("count"+a);
+	if(textsize<a){
+		
+		a=a-1;
+		console.log("less"+a);
+		}
+	else
+		{
+		a=a+1;
+		console.log("not less"+a);
+		}
+	
+	
+	document.getElementById("count").innerHTML  = a;
+	
+	
+}
+</script>
 <style>
 ul {
   list-style-type: none;
@@ -46,10 +89,11 @@ li {
           <label class="lab" for="postkudo">Post kudos</label>
           <br/>
           <br/>
-         <textarea class="commentbox"  name="postkudo" maxlength="200" th:value="${postkudo}" required></textarea><br>
-              
-     
-      <input class="button1"  type="submit" value="Cancel" style="float:right;" />
+         <textarea class="commentbox"  id="postkudo" name="postkudo" maxlength="200" th:value="${postkudo}" th:oninput="'javascript:countupdate();'" required></textarea><br>
+             
+     <p id ="count">0</p>
+     <p>200</p>
+      <input class="button1"  type="button" value="Cancel" style="float:right;" />
       <input class="button" type="submit" value="Post" style="float:right;"/><br />
       <input type="hidden" name="username" th:value="${user.getName()}"/>
       
@@ -80,17 +124,15 @@ li {
 	
 	
         </form>
-        <!--     <div class="catagory">
-        <button>International News</button><br/>
-        <button>Entertainment</button><br/>
-        <button>Sports</button><br/>
-        <button>National News</button><br/>
-        <button>Food</button><br/>
-        <button>Education</button><br/>
-        <button>Agriculture</button><br/>
-        <button>Help</button><br/>
-        
-        
+          <!--   <div class="catagory">
+        <button class="catabtn">International News</button><br/>
+        <button class="catabtn">Entertainment</button><br/>
+        <button class="catabtn">Sports</button><br/>
+        <button class="catabtn">National News</button><br/>
+        <button class="catabtn">Food</button><br/>
+        <button class="catabtn">Education</button><br/>
+        <button class="catabtn">Agriculture</button><br/>
+        <button class="catabtn">Help</button><br/>
         </div> -->
         <div class="mainsection">
         <p class="sectiontitle">Latest kudos</p>
@@ -111,9 +153,19 @@ li {
 	<a th:href="@{/like/{id}(id=${comment.getComment_id()})}"><i class="glyphicon glyphicon-thumbs-up"><span class="commentcount" th:text="${comment.getLike_count()}"></span></i></a>
 	
 	<span  th:if="${user.getId() == comment.getUser().getId()}">
-	<a th:href="@{/delete/{id}(id=${comment.getComment_id()})}" onclick="return confirm('Are you sure ?');"><i class="fa fa-trash" style="color:hotpink;"></i></a>
+	<a th:onclick="'javascript:openbox('+${comment.getComment_id()}+');'"><i class="fa fa-trash" style="color:hotpink;"></i></a>
 	</span>
+	<!-- th:href="@{/delete/{id}(id=${comment.getComment_id()})}" -->
 	
+	<!-- <div class="form-popup" id="myForm"> -->
+  <form th:id="'myForm' + ${comment.getComment_id()}" action="#" th:action="@{/delete}" class="form-popup" method="post">
+  <p>Are you Sure ?</p>
+  <button type="submit">Yes</button>
+  <button type="button" th:onclick="'javascript:closeForm('+${comment.getComment_id()}+');'">No</button>
+  <input th:id="'mytext' + ${comment.getComment_id()}" type="hidden" name="id"/>
+  </form>
+<!-- </div>
+	 -->
 	<br/><br/>
 	</div>
 	</div>

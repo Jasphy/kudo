@@ -244,10 +244,15 @@ List<CommentEntity> list=uks.findallcomments();
 		return "commentpage";
 	}
 	
-	@GetMapping("/delete/{id}") // delete player
-	public String delete(@PathVariable("id") Integer id,HttpSession session,
+	@PostMapping("/delete") // delete comment
+	public String delete(@RequestParam("id") String value,HttpSession session,
 			
 			Model model) {
+	
+		 int val=Integer.parseInt(value);
+		
+		 Integer id=new Integer(val);
+		
 
 		CommentEntity ce=uks.findcommentbyid(id);
 		
@@ -264,7 +269,7 @@ List<CommentEntity> list=uks.findallcomments();
 
 	}
 	
-	@GetMapping("/logout") // delete player
+	@GetMapping("/logout") // logout
 	public String logout() {
 
 	
