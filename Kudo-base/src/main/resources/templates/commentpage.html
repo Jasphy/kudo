@@ -28,25 +28,24 @@ function closeForm(id) {
 function countupdate(){
 	
 	var text=document.getElementById("postkudo").value ;
-	console.log(text);
+	
 	var textsize=text.length;
-	console.log("textsize"+textsize);
+
 	
 	var count=document.getElementById("count").innerHTML ;
 	a=Number(count);
-	console.log("count"+a);
+
 	if(textsize<a){
 		
 		a=a-1;
-		console.log("less"+a);
+	
 		}
 	else
 		{
 		a=a+1;
-		console.log("not less"+a);
+		
 		}
-	
-	
+
 	document.getElementById("count").innerHTML  = a;
 	
 	
@@ -89,10 +88,10 @@ li {
           <label class="lab" for="postkudo">Post kudos</label>
           <br/>
           <br/>
-         <textarea class="commentbox"  id="postkudo" name="postkudo" maxlength="200" th:value="${postkudo}" th:oninput="'javascript:countupdate();'" required></textarea><br>
-             
-     <p id ="count">0</p>
-     <p>200</p>
+         <textarea class="commentbox"  id="postkudo" name="postkudo" maxlength="200" th:value="${postkudo}" th:oninput="'javascript:countupdate();'" required></textarea>
+          <span id ="count">0</span>
+         <span>to</span><span>&nbsp;</span>
+     <span>200</span>
       <input class="button1"  type="button" value="Cancel" style="float:right;" />
       <input class="button" type="submit" value="Post" style="float:right;"/><br />
       <input type="hidden" name="username" th:value="${user.getName()}"/>
