@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>View image</title>
+</head>
+<script>
+
+function updateimage(){
+	document.getElementById("update").style.display = "block"; 
+	
+}
+
+</script>
+<body style="background-color: darkslategrey;">
+
+<img class="picture" th:src="@{/image/{name} (name=${user.getName()})}" style="border-radius:50% 50% 50% 50%;width:400px;height:400px;" />
+
+<button th:onclick="'javascript:updateimage();'">Update picture</button>
+
+<form th:id="update" action="#" th:action="@{/editimage}" method="post" enctype="multipart/form-data" style="display:none;">
+    
+      <div>
+     <label for="image">Update photo</label>:
+    <input type="file" name="image" th:value="${image}"/> <br/>
+     </div>
+     
+      <div>
+      <input type="submit" value="Submit" />
+      </div>
+    </form>
+   
+</body>
+</html>

@@ -3,42 +3,58 @@
 <head>
     <title>Getting Started: Handling Form Submission</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" th:href="@{/css/register.css}"
+	href="../../css/register.css" />
 </head>
 <body>
-
-	<h1>Enter the below details </h1>
-<form action="#" th:action="@{/adduser}" method="post" enctype="multipart/form-data">
+<div class="header">
+  <p style="float:left;font-size: x-large;font-family: sans-serif;color: #f7efae;">InfoBox</p></div>
+<div class="register">
+<h1>Sign up </h1>
+	
+   <form action="#" th:action="@{/adduser}" method="post" enctype="multipart/form-data">
     
-      <div>
-      <label for="username">Username</label>:
-      <input type="text" name="username" th:value="${username}"/> <br/>
+    
+      <div class="section">
+      <label for="username">UserName</label>:
+      <input class="input" type="text" name="username"  th:value="${username}" style="
+    margin-left: 10px;" required> <br/>
       </div>
-      <div>
-      <label for="email">Email_id</label>:
-      <input type="text" name="email" th:value="${email}"/> <br/>
+      <div class="section">
+      <label for="email">Email</label>:
+      <input class ="input" type="text" name="email" th:value="${email}"   style="
+    margin-left: 40px; " required/> <br/>
       </div>
-      <div>
+      <div class="section">
       <label for="gender">Gender</label>:
-      <input type="radio" name="gender" value="male"/>Male <br/>
-      <input type="radio" name="gender" value="female"/>Female <br/>
+      <input class ="input" type="radio" name="gender" value="male" style="
+    margin-left: 40px;"/>Male
+      <span><input  class ="input"type="radio" name="gender" value="female"/>Female </span><br/>
       </div>
-      <div>
+      <div class="section">
      <label for="country">Country</label>:
-    <input type="text" name="country" th:value="${country}"/> <br/>
+    <input class ="input" type="text" name="country" th:value="${country}"  style="
+    margin-left: 25px;" required/> <br/>
      </div>
-     <div>
+     <div class ="section">
       <label for="password">Password</label>:
-      <input type="password" name="password" th:value="${password}"/> <br/>
+      <input class ="input" type="password" name="password" th:value="${password}" style="
+    margin-left: 13px;" required /> <br/>
       </div>
       
-      <div>
-     <label for="image">Upload photo</label>:
-    <input type="file" name="image" th:value="${image}"/> <br/>
+      <div class="section">
+     <label for="image">Upload Photo</label>:
+    <input  type="file" name="image" th:value="${image}" style="
+    margin-left: 1px;"/> <br/>
      </div>
      
-      <div>
-      <input type="submit" value="Submit" />
+      <div class="section">
+      <input class ="submit" type="submit" value="Create Account" style="
+    margin-left: 40px; " />
       </div>
+   
     </form>
+    
+    </div>
 </body>
 </html>

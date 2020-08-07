@@ -1,0 +1,77 @@
+@charset "ISO-8859-1";
+
+ h1{
+font-size: large;
+    font-family: sans-serif;
+    color: #7ba8bd;
+    margin-top: -14px;
+    margin-bottom: 38px;
+	
+}
+
+body{
+	 /* background-repeat:no-repeat;
+    background-image: url("../../images/main9.jpg");  */
+	
+}
+
+
+.register{
+	
+    background-color: white;
+    height: 390px;
+    margin-left: 500px;
+    padding: 50px 50px;
+    width: 352px;
+    margin-top: 100px;
+    border-radius: 14px;
+}
+	
+}
+
+form{
+	
+	
+}
+.input{
+	border-radius: 5px;
+	
+}
+
+.section{
+	margin-bottom: 28px;
+}
+label{
+	    color: darkcyan;
+    font-size: small;
+    font-weight: bold;
+    font-family: sans-serif;
+    
+	
+}
+
+.submit{
+	padding:3px 100px;
+	border:none;
+	border-radius: 10px;
+    background-color: #3481a7;
+    color: antiquewhite;
+}
+.upload{
+	padding:3px 100px;
+	border:none;
+	border-radius: 10px;
+    background-color: #3481a7;
+    color: antiquewhite;
+}
+
+
+
+.header{
+	height: 60px;
+    margin-left: 150px;
+    margin-right: 150px;
+        border-bottom: inset;
+        border-bottom-width: thick;
+}
+

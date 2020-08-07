@@ -1,5 +1,6 @@
 package com.kudo.web.service;
 
+import java.sql.Blob;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -110,6 +111,20 @@ Comparator<CommentEntity> co=(e1, e2) -> e1.getInsert_ts().compareTo(e2.getInser
 		
 		
 		return uc ;
+	}
+
+	public UserEntity findUserById(Integer id) {
+		// TODO Auto-generated method stub
+		
+		UserEntity ue=usr.findById(id).get();
+		return ue;
+	}
+
+	public void updatephoto(Integer id, Blob blob) {
+		// TODO Auto-generated method stub
+		
+		usr.updatephoto(id,blob);
+		
 	}
 
 }

@@ -8,33 +8,42 @@
 </head>
 <body>
 <div class="header">
-  <p style="float:left;font-size: x-large;font-family: sans-serif;color: blueviolet;">Kudos</p></div>
+  <p style="float:left;font-size: x-large;font-family: sans-serif;color: #f7efae;">InfoBox</p></div>
 <br /><br /><br /><br /><br /><br /><br /><br /><br />
       
 
-<!-- @{/homepage}-->
+<!-- @{/commentpage}-->
 <div class="loginform">
 
-   <form th:with="authUrl=${'/commentpage'}" action="#" th:action="${authUrl}" method="post">
+   <form th:with="authUrl=${'/authenticateLogin'}" action="#" th:object = "${command}" th:action="${authUrl}" method="post">
     <fieldset>
   
       <div>
       <p class ="s">Sign in</p>
-      <label for="username">User name</label>
-      <input type="text"  name="username" th:value="${username}"/> 
+      <label for="userName">User name</label>
+      <input type="text"  name="userName" th:value="${username}"/> 
       <br />
       <label for="password">Password</label>
       <input type="password"  name="password" th:value="${password}"/> 
       <br />
       <br />
       <input class="submit" type="submit" value="Sign in" />
-      
+      <br/>
+      <!-- <p>New User ?<a th:href="@{/register}">Sign up</a></p>  -->
       </div>
-      <p>New User ? <a th:href="@{/register}">Sign up</a></p>
       
+      <!-- <p>Forgot Password ?<a th:href="@{/forgotPassword}">Reset</a></p></div> -->
       </fieldset>
+      <div>
+      <p>New User ?<a th:href="@{/register}">Sign up</a></p><br/>
+      <p>Forgot Password ?<a th:href="@{/forgotPassword}">Reset</a></p>
+      </div>
+       
     </form>
     </div>
     
+    <div th:if='${check}'>
+    <p th:text='${message}'></p>
+    </div>
 </body>
 </html>

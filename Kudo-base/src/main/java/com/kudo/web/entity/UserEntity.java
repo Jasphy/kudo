@@ -22,7 +22,7 @@ import com.fasterxml.jackson.annotation.JsonAutoDetect;
 
 @Entity
 @EntityListeners(AuditingEntityListener.class)
-@Table(name="User",catalog="kudodb")
+@Table(name="User")
 @JsonAutoDetect
 public class UserEntity {
 	
@@ -47,6 +47,8 @@ private static final long serialVersionUID = -723583058586873479L;
 	@Lob
 	@Column(name="image")
 	private Blob photo;
+	
+	 
 	
 	
 	
